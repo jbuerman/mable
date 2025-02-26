@@ -24,7 +24,8 @@ jobs:
       with:
         version: "0.6.3"
     - name: Set up Python
-      uses: uv python install
+      run: |
+        uv python install
     - name: Install the project
       run: | 
         uv sync --all-extras --dev
