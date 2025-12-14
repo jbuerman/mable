@@ -181,8 +181,7 @@ class DurationEvent(Event):
         :type engine: SimulationEngine
         """
 
-        # if is already started
-        if not self._time_started == -1:
+        if self.has_started():
             return
         
         if self.time < engine.world.current_time:
