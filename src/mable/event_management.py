@@ -180,6 +180,11 @@ class DurationEvent(Event):
         :param engine: The simulation engine.
         :type engine: SimulationEngine
         """
+
+        # if is already started
+        if not self._time_started == -1:
+            return
+        
         if self.time < engine.world.current_time:
             self._time_started = self.time
         else:
