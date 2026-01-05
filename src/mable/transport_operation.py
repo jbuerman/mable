@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from mable.event_management import VesselEvent
     from mable.simulation_space.universe import Location
 
+EMPTY_CARGO_EPSILON = 1e-7
 
 @dataclass
 class CargoCapacity(JsonAble):
@@ -168,7 +169,7 @@ class CargoHold:
         i = 0
         while is_empty and i < len(all_cargo_types):
             one_cargo_types = all_cargo_types[i]
-            if self.get_current_load(one_cargo_types) > 0:
+            if self.get_current_load(one_cargo_types) > EMPTY_CARGO_EPSILON:
                 is_empty = False
             i += 1
         return is_empty
