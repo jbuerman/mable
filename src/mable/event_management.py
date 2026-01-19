@@ -181,13 +181,11 @@ class DurationEvent(Event):
         :type engine: SimulationEngine
         """
 
-        if self.has_started():
-            return
-        
-        if self.time < engine.world.current_time:
-            self._time_started = self.time
-        else:
-            self._time_started = engine.world.current_time
+        if not self.has_started():
+            if self.time < engine.world.current_time:
+                self._time_started = self.time
+            else:
+                self._time_started = engine.world.current_time
 
     def has_started(self):
         """
